@@ -24,7 +24,7 @@ if(empty($_SESSION['name']) || $_SESSION['name'] == ''){
 <button class="btn btn-info my-2" ><a href="signup.php"class="text-light" >Add User</a></button>
 <button class="btn btn- btn-secondary float-end ml-2 my-2" ><a href="index.php"class="text-light">Logout</a></button>
     <h1>List of users</h1>
-<table class="table border">
+<table class="table table-striped table-hover border-danger ">
   <tr>
   <th>id</th>
       <th>full name</th>
@@ -45,6 +45,8 @@ if(empty($_SESSION['name']) || $_SESSION['name'] == ''){
         mysqli_query($conn, "DELETE FROM users WHERE id=".$id);
         header('location: admin.php');
     }
+
+
  //PRINT Table from data base
   $sql = "SELECT * FROM users WHERE admin=0; ";
   $result = mysqli_query($conn, $sql);
@@ -69,6 +71,6 @@ $id=$row["id"];
   }
  
  ?>
-<!-- <script src="js/signup.js"></script>
- </body> -->
+<script src="js/signup.js"></script>
+ </body> 
  
