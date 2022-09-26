@@ -119,6 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 
 <body>
+<a href="admin.php"><input  class="  btn  btn-light" type="submit" value="Back " name="submit"/><img src='skip-backward-fill.svg'></a><br />
 
     <div  class="containerc">
     <form  name="myForm" id="sign-up" method="post" >

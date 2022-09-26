@@ -46,8 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
    
         if($row['admin']==0){
           header("location:welcome.php");  
-        }else{
+        }else if($row['admin']==1){
             header("location:admin.php"); 
+        }
+        else{
+            header("location:superadmin.php");
         }
      
 
@@ -133,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
   </div>
 
-   <script src="js/login.js"></script>
+  
  
 
 </body>

@@ -1,15 +1,17 @@
+
 <?php
 include "./connect.php";
 ?>
 <?php
 session_start();
-echo " <font color='#346057'><h3><b>Welcome   ". $_SESSION['name']. " To Admin Page </b></h3></font><br>";
+echo " <font color='#346057'><h3><b>Welcome   ". $_SESSION['name']. " To Super Admin Page </b></h3></font><br>";
 //after log out destroy this page
 if(empty($_SESSION['name']) || $_SESSION['name'] == ''){
   header("Location: index.php");
   die();}
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +23,15 @@ if(empty($_SESSION['name']) || $_SESSION['name'] == ''){
 
 </head>
 <body style="margin:50px;">
-<button class="btn btn-info my-2" ><a href="signup.php"class="text-light" >Add User</a></button>
+
+
+
+
+
+<!-- <button class="btn btn-info my-2" ><a href="signup.php"class="text-light" >Add User</a></button> -->
 <button class="btn btn- btn-secondary float-end ml-2 my-2" ><a href="index.php"class="text-light">Logout</a></button>
-    <h1>List of users</h1>
-<table class="table table-striped table-hover border-danger ">
+    <h1>List Of Admins</h1><br>
+<table class="table table-success table-striped text-center  ">
   <tr>
   <th>id</th>
       <th>full name</th>
@@ -34,22 +41,21 @@ if(empty($_SESSION['name']) || $_SESSION['name'] == ''){
         <th>birthday</th>
         <th>mobile number</th>
         <th>date created</th>
-        <!-- <th>date last login </th> -->
+         <!-- <th>date last login </th>  -->
         <th>Operations</th>
   </tr>
-  <?php
+  
+<?php
+  // delete user
+  if (isset($_GET['deleteid'])) {
+    $id = $_GET['deleteid'];
 
-    // delete user
-    if (isset($_GET['deleteid'])) {
-        $id = $_GET['deleteid'];
-
-        mysqli_query($conn, "DELETE FROM users WHERE id=".$id);
-        header('location: admin.php');
-    }
+    mysqli_query($conn, "DELETE FROM users WHERE id=".$id);
+    header('location: superadmin.php');
+}
 
 
- //PRINT Table from data base
-  $sql = "SELECT * FROM users WHERE admin=0; ";
+$sql = "SELECT * FROM users WHERE admin=1; ";
   $result = mysqli_query($conn, $sql);
 
   while($row=$result->fetch_assoc()){
@@ -59,24 +65,21 @@ $id=$row["id"];
     <td>".$row["fullname"] ."</td>
     <td>".$row["email"]."</td>
     <td>".$row["salary"]."</td>
+   
     <td>".$row["pass"]."</td>
     <td>".$row["Date_of_birth"]."</td>
     <td>".$row["mobile_number"]."</td>
     <td>".$row["date_created"]."</td>
-
-    <td>
-    <button class='btn btn-info'><a href='update.php?updateid=".$id."' class='text-light'>Update</a></button>"?>
-    <button class='btn btn-danger'><a onclick="return confirm('Do you want to delete this record?')" href=<?php echo"'admin.php?deleteid=".$id."' class='text-light'>Delete</a></button>
+ <td>
+    <button class='btn btn-info'><a href='adminupdate.php?updateid=".$id."' class='text-light'>Update</a></button>"?>
+    <button class='btn btn-danger'> <a onclick="return confirm('Do you want to delete this record?')" href=<?php echo"'superadmin.php?deleteid=".$id."' class='text-light'>Delete</a></button>
     </td>
+   
 
    </tr>";
   }
  
- ?>
- 
- 
- 
- 
 
 
- 
+?>
+

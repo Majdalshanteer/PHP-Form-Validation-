@@ -13,6 +13,7 @@ include "./connect.php";
   $email=$row["email"];
   $pass=$row["pass"];
   $date_birth=$row["Date_of_birth"];
+  $date_birth=$row["salary"];
   $mobile=$row["mobile_number"];
 
 
@@ -23,16 +24,17 @@ include "./connect.php";
     $phoneField=$_POST['phone'];
     $birthField=$_POST ['birthday'];
     $passField=$_POST['password'];
+    $salaryField=$_POST['salary'];
 
 
 $sql="UPDATE users set id=$id,fullname='$nameField', email='$emailField',
-mobile_number='$phoneField',Date_of_birth='$birthField' ,pass='$passField'
+mobile_number='$phoneField',Date_of_birth='$birthField' ,pass='$passField',salary='$salaryField '
 where id=$id";
 
 $result=mysqli_query($conn,$sql);
 if($result){
     echo"success";
-    header('location: admin.php');
+    header('location: superadmin.php');
 
 }else{
     die(musqli_error($conn));
@@ -64,7 +66,7 @@ if($result){
 
 
 <body>
-<a href="admin.php"><input  class="  btn  btn-light" type="submit" value="Back " name="submit"/><img src='skip-backward-fill.svg'></a>
+<a href="superadmin.php"><input  class="  btn  btn-success" type="submit" value="Back " name="submit"/></a>
     <div  class="containerc">
     <form  name="myForm" id="sign-up" method="post" >
        
@@ -88,6 +90,11 @@ if($result){
         echo  $mobile;?>>
         <div id="two" class="err"></div><br />
 
+        <label for="birthday">Salary:</label>
+       <input type="text" id="birthday" name="salary" value=<?php
+        echo  $date_birth;?>><br>
+       <div id="four" class="err"></div><br />
+
         <label for="birthday">Birthday:</label>
        <input type="date" id="birthday" name="birthday" value=<?php
         echo  $date_birth;?>><br>
@@ -96,7 +103,7 @@ if($result){
 
         <label for="password"> Password </label>
         <input type="password" id= "pass"  name="password"  autocomplete="current-password" value=<?php
-        echo  $pass;?>/><br><br>
+        echo  $pass;?>/><br>
         <!-- <div id="three" class="err"></div><br />  <label for="chekpass"> confirm Password </label>
         <input type="password" id= "password2"  name="checkpass"  autocomplete="current-password" onkeyup="checkPassword(); "/>
          <div id="pw2_check"class="err"></div>
@@ -110,6 +117,8 @@ if($result){
       </form>
     </div>
   </div>
+  
+  
   <!-- <script src="js/signup.js"></script> -->
 
 </body>
