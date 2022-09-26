@@ -59,7 +59,7 @@ if (passField.value == "" || passField.value == null) {
 }
 else if (
     !passField.value.match(
-        ("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")
+        ("'(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})'")
     )
 ) {
     document.getElementById("three").textContent =

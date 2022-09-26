@@ -1,6 +1,14 @@
 <?php
 include "./connect.php";
 ?>
+<?php
+session_start();
+if(empty($_SESSION['name']) || $_SESSION['name'] == ''){
+  header("Location: index.php");
+  die();}
+?>
+
+
 
 <?php 
 
@@ -8,12 +16,13 @@ include "./connect.php";
   $sql="SELECT * from users where id=$id ";
   $result=mysqli_query($conn,$sql);
   $row=mysqli_fetch_assoc($result);
+
   // show input field with first values befor changes
   $name=$row["fullname"];
   $email=$row["email"];
   $pass=$row["pass"];
   $date_birth=$row["Date_of_birth"];
-  $date_birth=$row["salary"];
+  $salary=$row["salary"];
   $mobile=$row["mobile_number"];
 
 
@@ -66,7 +75,9 @@ if($result){
 
 
 <body>
-<a href="superadmin.php"><input  class="  btn  btn-success" type="submit" value="Back " name="submit"/></a>
+<a href="superadmin.php"><img src='skip-backward-fill.svg'><input  class="  btn  btn-light" type="submit" value="Back " name="submit"/></a><br />
+
+<!-- <a href="superadmin.php"><input  class="  btn  btn-success" type="submit" value="Back " name="submit"/></a> -->
     <div  class="containerc">
     <form  name="myForm" id="sign-up" method="post" >
        
@@ -90,9 +101,9 @@ if($result){
         echo  $mobile;?>>
         <div id="two" class="err"></div><br />
 
-        <label for="birthday">Salary:</label>
-       <input type="text" id="birthday" name="salary" value=<?php
-        echo  $date_birth;?>><br>
+        <label for="s">Salary:</label>
+       <input type="text" id="s" name="salary" value=<?php
+        echo  $salary;?>><br>
        <div id="four" class="err"></div><br />
 
         <label for="birthday">Birthday:</label>

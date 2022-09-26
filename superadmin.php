@@ -23,14 +23,14 @@ if(empty($_SESSION['name']) || $_SESSION['name'] == ''){
 
 </head>
 <body style="margin:50px;">
+ <button class="btn btn-dark my-2" ><a href="dash.php"class="text-light" > Dashbored Page</a></button>
 
 
 
 
-
-<!-- <button class="btn btn-info my-2" ><a href="signup.php"class="text-light" >Add User</a></button> -->
+<!-- <button class="btn btn-info my-2" ><a href="signup.php"class="text-light" >Add User</a></button>  -->
 <button class="btn btn- btn-secondary float-end ml-2 my-2" ><a href="index.php"class="text-light">Logout</a></button>
-    <h1>List Of Admins</h1><br>
+    <h1>List Of Admins</h1>
 <table class="table table-success table-striped text-center  ">
   <tr>
   <th>id</th>
@@ -82,4 +82,5 @@ $id=$row["id"];
 
 
 ?>
+
 
